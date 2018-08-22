@@ -26,7 +26,7 @@ pyber.head()
 
 # ## Bubble Plot of Ride Sharing Data
 
-# In[10]:
+# In[2]:
 
 
 # Obtain the x and y coordinates for each of the three city types
@@ -102,10 +102,22 @@ plt.show()
 
 
 # Calculate Type Percents
+total_fare = pyber["fare"].sum()
+urban_p = urban_pyber["fare"].sum() / total_fare
+suburban_p = suburban_pyber["fare"].sum() / total_fare
+rural_p = rural_pyber["fare"].sum() / total_fare
 
 # Build Pie Chart
+labels_city = ["Urban", "Suburban", "Rural"]
+size_city = [urban_p, suburban_p, rural_p]
+colors = ["coral", "deepskyblue", "gold"]
+explode = (0.1, 0, 0)
 
+plt.pie(size_city, explode=explode, labels=labels_city, colors=colors, autopct="%1.1f%%", shadow=True, startangle=300)
+
+plt.title("% of Total Fares by City Type")
 # Save Figure
+plt.savefig("% of Total Fares by City Type.png")
 
 
 # In[5]:
@@ -121,10 +133,23 @@ plt.show()
 
 
 # Calculate Ride Percents
+total_ride = pyber["ride_id"].count()
+urban_ride_p = urban_pyber["ride_id"].count() / total_ride
+suburban_ride_p = suburban_pyber["ride_id"].count() / total_ride
+rural_ride_p = rural_pyber["ride_id"].count() / total_ride
 
 # Build Pie Chart
+labels_city = ["Urban", "Suburban", "Rural"]
+size_city = [urban_ride_p, suburban_ride_p, rural_ride_p]
+colors = ["coral", "deepskyblue", "gold"]
+explode = (0.1, 0, 0)
+
+plt.pie(size_city, explode=explode, labels=labels_city, colors=colors, autopct="%1.1f%%", shadow=True, startangle=240)
+
+plt.title("% of Total Rides by City Type")
 
 # Save Figure
+plt.savefig("% of Total Rides by City Type.png")
 
 
 # In[7]:
@@ -140,10 +165,23 @@ plt.show()
 
 
 # Calculate Driver Percents
+total_driver = urban_driver.sum() + suburban_driver.sum() + rural_driver.sum()
+urban_driver_p = urban_driver.sum() / total_driver
+suburban_driver_p = suburban_driver.sum() / total_driver
+rural_driver_p = rural_driver.sum() / total_driver
 
 # Build Pie Charts
+labels_city = ["Urban", "Suburban", "Rural"]
+size_city = [urban_driver_p, suburban_driver_p, rural_driver_p]
+colors = ["coral", "deepskyblue", "gold"]
+explode = (0.1, 0, 0)
+
+plt.pie(size_city, explode=explode, labels=labels_city, colors=colors, autopct="%1.1f%%", shadow=True, startangle=240)
+
+plt.title("% of Total Drivers by City Type")
 
 # Save Figure
+plt.savefig("% of Total Drivers by City Type.png")
 
 
 # In[9]:
